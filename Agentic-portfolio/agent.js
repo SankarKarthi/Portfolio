@@ -5,21 +5,21 @@
 ═══════════════════════════════════════════════════════════ */
 
 // ── Particle canvas ────────────────────────────────────────
-(function(){
-  const canvas=document.getElementById('pcanvas');if(!canvas)return;
-  const ctx=canvas.getContext('2d');let W,H,pts=[];
-  const N=55,COLS=['rgba(124,58,237,','rgba(99,102,241,','rgba(236,72,153,'];
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  function rnd(a,b){return Math.random()*(b-a)+a;}
-  function init(){pts=[];for(let i=0;i<N;i++)pts.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-.12,.12),vy:rnd(-.12,.12),r:rnd(.8,2.2),c:COLS[Math.floor(Math.random()*COLS.length)],a:rnd(.08,.35)});}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c+p.a+')';ctx.fill();});
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(124,58,237,'+(0.05*(1-d/120))+')';ctx.lineWidth=.6;ctx.stroke();}}
+(function () {
+  const canvas = document.getElementById('pcanvas'); if (!canvas) return;
+  const ctx = canvas.getContext('2d'); let W, H, pts = [];
+  const N = 55, COLS = ['rgba(124,58,237,', 'rgba(99,102,241,', 'rgba(236,72,153,'];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function rnd(a, b) { return Math.random() * (b - a) + a; }
+  function init() { pts = []; for (let i = 0; i < N; i++)pts.push({ x: rnd(0, W), y: rnd(0, H), vx: rnd(-.12, .12), vy: rnd(-.12, .12), r: rnd(.8, 2.2), c: COLS[Math.floor(Math.random() * COLS.length)], a: rnd(.08, .35) }); }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => { p.x += p.vx; p.y += p.vy; if (p.x < 0) p.x = W; if (p.x > W) p.x = 0; if (p.y < 0) p.y = H; if (p.y > H) p.y = 0; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.c + p.a + ')'; ctx.fill(); });
+    for (let i = 0; i < pts.length; i++)for (let j = i + 1; j < pts.length; j++) { const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy); if (d < 120) { ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.strokeStyle = 'rgba(124,58,237,' + (0.05 * (1 - d / 120)) + ')'; ctx.lineWidth = .6; ctx.stroke(); } }
     requestAnimationFrame(draw);
   }
-  resize();init();draw();
-  window.addEventListener('resize',()=>{resize();init();},{passive:true});
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
 })();
 
 // ══════════════════════════════════════════════════════════
@@ -286,38 +286,38 @@ const SESSIONS = [
 // ══════════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════════
-let currentSession  = 0;
-let currentMsgIdx   = 0;
-let isTyping        = false;
-let isAutoPlay      = false;
-let autoTimer       = null;
+let currentSession = 0;
+let currentMsgIdx = 0;
+let isTyping = false;
+let isAutoPlay = false;
+let autoTimer = null;
 let _nextBtnHandler = null;
 
 const T = {
   userMsgDelay: 400,
-  thinkMin:     1600,
-  thinkJitter:  1000,
-  readUser:     2800,
-  readAgent:    3800,
+  thinkMin: 1600,
+  thinkJitter: 1000,
+  readUser: 2800,
+  readAgent: 3800,
   lastMsgPause: 1800,
-  sessLoadGap:  700,
+  sessLoadGap: 700,
 };
 
 // ══════════════════════════════════════════════════════════
 // DOM
 // ══════════════════════════════════════════════════════════
-const messagesEl    = document.getElementById('messages');
-const tokenFill     = document.getElementById('token-fill');
-const tokenCount    = document.getElementById('token-count');
-const tokenPctEl    = document.getElementById('token-pct');
-const tokenLabelEl  = document.getElementById('token-label');
-const exceededEl    = document.getElementById('token-exceeded');
-const exceededFill  = document.getElementById('exceeded-fill');
-const exceededIcon  = document.getElementById('exceeded-icon');
+const messagesEl = document.getElementById('messages');
+const tokenFill = document.getElementById('token-fill');
+const tokenCount = document.getElementById('token-count');
+const tokenPctEl = document.getElementById('token-pct');
+const tokenLabelEl = document.getElementById('token-label');
+const exceededEl = document.getElementById('token-exceeded');
+const exceededFill = document.getElementById('exceeded-fill');
+const exceededIcon = document.getElementById('exceeded-icon');
 const exceededTitle = document.getElementById('exceeded-title');
-const exceededSub   = document.getElementById('exceeded-sub');
+const exceededSub = document.getElementById('exceeded-sub');
 const nextSessLabel = document.getElementById('next-sess-label');
-const hintBar       = document.getElementById('hint-bar');
+const hintBar = document.getElementById('hint-bar');
 
 // ══════════════════════════════════════════════════════════
 // PROGRESS BAR
@@ -339,7 +339,7 @@ function renderMessage(msg, animate = true) {
   const isUser = msg.role === 'user';
   const wrap = document.createElement('div');
   wrap.className = `msg ${isUser ? 'user' : 'agent'}` + (animate ? '' : ' visible');
-  const time = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   wrap.innerHTML = `
     <div class="msg-avatar ${isUser ? 'avatar-user' : 'avatar-agent'}">${isUser ? 'YOU' : 'SK'}</div>
     <div class="msg-body">
@@ -351,7 +351,7 @@ function renderMessage(msg, animate = true) {
     </div>`;
   messagesEl.appendChild(wrap);
   if (animate) requestAnimationFrame(() => requestAnimationFrame(() => wrap.classList.add('visible')));
-  setTimeout(() => messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior:'smooth' }), 60);
+  setTimeout(() => messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' }), 60);
 }
 
 // ══════════════════════════════════════════════════════════
@@ -368,7 +368,7 @@ function showTyping() {
       <div class="msg-bubble bubble-agent"><div class="typing-dots"><span></span><span></span><span></span></div></div>
     </div>`;
   messagesEl.appendChild(wrap);
-  messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior:'smooth' });
+  messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
 }
 function removeTyping() {
   const t = document.getElementById('typing-indicator');
@@ -387,8 +387,8 @@ function addDivider(text) {
 // ══════════════════════════════════════════════════════════
 function loadSession(idx) {
   currentSession = idx;
-  currentMsgIdx  = 0;
-  isTyping       = false;
+  currentMsgIdx = 0;
+  isTyping = false;
   const sess = SESSIONS[idx];
   messagesEl.innerHTML = '';
   updateTokenBar(0, sess.tokenMax);
@@ -397,9 +397,9 @@ function loadSession(idx) {
     btn.classList.toggle('active', i === idx);
     btn.setAttribute('aria-selected', i === idx ? 'true' : 'false');
     const s = btn.querySelector('.sess-status');
-    if (i < idx)        { s.textContent = '✓'; s.className = 'sess-status done'; }
+    if (i < idx) { s.textContent = '✓'; s.className = 'sess-status done'; }
     else if (i === idx) { s.textContent = '▶'; s.className = 'sess-status active-s'; }
-    else                { s.textContent = '·'; s.className = 'sess-status locked'; }
+    else { s.textContent = '·'; s.className = 'sess-status locked'; }
   });
 
   addDivider(`── ${sess.title} ──`);
@@ -409,7 +409,7 @@ function loadSession(idx) {
 // ══════════════════════════════════════════════════════════
 // HINT BAR — updates as conversation progresses
 // ══════════════════════════════════════════════════════════
-function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function updateHint() {
   const sess = SESSIONS[currentSession];
   if (currentMsgIdx >= sess.messages.length) {
@@ -477,9 +477,9 @@ function triggerChapterEnd() {
   const transition = CHAPTER_TRANSITIONS[currentSession];
   const nextIdx = currentSession + 1;
 
-  if (exceededIcon)  exceededIcon.innerHTML    = transition.icon;
+  if (exceededIcon) exceededIcon.innerHTML = transition.icon;
   if (exceededTitle) exceededTitle.textContent = transition.title;
-  if (exceededSub)   exceededSub.textContent   = transition.sub;
+  if (exceededSub) exceededSub.textContent = transition.sub;
   if (nextSessLabel) nextSessLabel.textContent = transition.nextLabel;
 
   const btn = document.getElementById('next-sess-btn');
@@ -489,7 +489,7 @@ function triggerChapterEnd() {
     btn.style.animation = '';
     btn.disabled = false;
     if (_nextBtnHandler) btn.removeEventListener('click', _nextBtnHandler);
-    _nextBtnHandler = function() {
+    _nextBtnHandler = function () {
       btn.disabled = true;
       exceededEl.style.opacity = '0';
       exceededEl.style.transition = 'opacity 0.5s ease';
