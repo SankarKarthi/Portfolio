@@ -28,20 +28,20 @@
 const CHAPTER_TRANSITIONS = [
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-    title: '✦ Chapter Complete',
+    title: '✦ Identity: Locked In',
     sub: 'You\'ve just met Sankar — the person, the philosophy, and what drives him every single day. Now it\'s time to see what he\'s actually shipped.',
     nextLabel: 'Explore Work Experience →'
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-    title: '✦ Chapter Complete',
-    sub: 'The professional track record — products in production, benchmarks beaten, and awards won. Now let\'s go deeper into the technical craft.',
+    title: '✦ Receipts: Verified',
+    sub: 'Products in production. Benchmarks beaten. Awards on the shelf. The track record checks out — now let\'s go deeper into the technical craft.',
     nextLabel: 'Explore Projects & Skills →'
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
-    title: '✦ Chapter Complete',
-    sub: 'Technical depth — covered. Personal projects — shipped. Research published. Awards won. One final chapter: how to reach the person behind all of it.',
+    title: '✦ Stack: Mapped',
+    sub: 'Technical depth — confirmed. Personal projects — shipped. Research published. Awards won. One final chapter: the person behind all of it, and how to reach him.',
     nextLabel: "Let's Connect →"
   }
 ];
@@ -154,7 +154,7 @@ const SESSIONS = [
       },
       {
         role: 'agent',
-        text: 'At the <strong>AWS GenAILoft Hackathon 2025</strong>, I built a <strong>Developer Productivity Intelligence Platform</strong> that uses AI to measure and improve engineering team performance through DORA metrics — tracking deployment frequency, lead time for changes, change failure rate, and mean time to recovery.<br><br>The system automatically classifies code changes by type and business impact using AI, and surfaces actionable insights that help engineering managers identify bottlenecks in real time.<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>🏆 Best Innovation Award — AWS GenAILoft 2025</strong><br>Recognised as the most innovative solution across all AWS Partner companies at the event</div></div>',
+        text: 'At the <strong>AWS GenAILoft Hackathon 2025</strong>, we built a <strong>Developer Productivity Intelligence Platform</strong> that uses AI to measure and improve engineering team performance through DORA metrics — tracking deployment frequency, lead time for changes, change failure rate, and mean time to recovery.<br><br>The system automatically classifies code changes by type and business impact using AI, and surfaces actionable insights that help engineering managers identify bottlenecks in real time.<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>🏆 Best Innovation Award — AWS GenAILoft 2025</strong><br>Recognised as the most innovative solution across all AWS Partner companies at the event</div></div>',
         tokens: 2180
       },
       {
