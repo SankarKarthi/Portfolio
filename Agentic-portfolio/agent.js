@@ -1,10 +1,10 @@
 
 /* ═══════════════════════════════════════════════════════════
    SK.Agent Portfolio — agent.js
-   Professional agentic portfolio for Sankar Karthikeyan
+   Sankar Karthikeyan · AI/ML Engineer Portfolio
 ═══════════════════════════════════════════════════════════ */
 
-// ── Particle background ────────────────────────────────────
+// ── Particle canvas ────────────────────────────────────────
 (function(){
   const canvas=document.getElementById('pcanvas');if(!canvas)return;
   const ctx=canvas.getContext('2d');let W,H,pts=[];
@@ -14,15 +14,8 @@
   function init(){pts=[];for(let i=0;i<N;i++)pts.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-.12,.12),vy:rnd(-.12,.12),r:rnd(.8,2.2),c:COLS[Math.floor(Math.random()*COLS.length)],a:rnd(.08,.35)});}
   function draw(){
     ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c+p.a+')';ctx.fill();
-    });
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(124,58,237,'+(0.05*(1-d/120))+')';ctx.lineWidth=.6;ctx.stroke();}
-    }
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c+p.a+')';ctx.fill();});
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(124,58,237,'+(0.05*(1-d/120))+')';ctx.lineWidth=.6;ctx.stroke();}}
     requestAnimationFrame(draw);
   }
   resize();init();draw();
@@ -30,39 +23,39 @@
 })();
 
 // ══════════════════════════════════════════════════════════
-// CHAPTER TRANSITION MESSAGES — professional & elegant
+// CHAPTER TRANSITIONS
 // ══════════════════════════════════════════════════════════
 const CHAPTER_TRANSITIONS = [
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
     title: '✦ Chapter Complete',
-    sub: 'Sankar\'s identity, background, and engineering philosophy have been explored. Ready to dive into what he has actually built and shipped.',
+    sub: 'You\'ve just met Sankar — the person, the philosophy, and what drives him every single day. Now it\'s time to see what he\'s actually shipped.',
     nextLabel: 'Explore Work Experience →'
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
     title: '✦ Chapter Complete',
-    sub: 'Professional achievements, product launches, and measurable impact — all covered. Time to explore the technical depth and personal work.',
+    sub: 'The professional track record — products in production, benchmarks beaten, and awards won. Now let\'s go deeper into the technical craft.',
     nextLabel: 'Explore Projects & Skills →'
   },
   {
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B5EFA" stroke-width="1.4"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
     title: '✦ Chapter Complete',
-    sub: 'Technical skills, personal projects, and recognition — all mapped. One final chapter remains: the person behind the work and how to reach him.',
-    nextLabel: 'Let\'s Connect →'
+    sub: 'Technical depth — covered. Personal projects — shipped. Research published. Awards won. One final chapter: how to reach the person behind all of it.',
+    nextLabel: "Let's Connect →"
   }
 ];
 
 // ══════════════════════════════════════════════════════════
-// PORTFOLIO CONTENT — 4 CHAPTERS
+// PORTFOLIO CONTENT
 // ══════════════════════════════════════════════════════════
 const SESSIONS = [
-  // ── CHAPTER 1: About Me ──────────────────────────────────
+
+  // ─────────────────────────────────────────────────────────
+  // CHAPTER 1 — ABOUT ME
+  // ─────────────────────────────────────────────────────────
   {
-    id: 0,
-    title: 'About Me',
-    sysPrompt: 'You are Sankar Karthikeyan\'s portfolio AI. Answer all questions truthfully, representing <strong>Sankar Karthikeyan — AI/ML Engineer</strong>. This chapter covers identity, background and philosophy.',
-    tokenMax: 4096,
+    id: 0, title: 'About Me', tokenMax: 4096,
     messages: [
       {
         role: 'user',
@@ -71,220 +64,217 @@ const SESSIONS = [
       },
       {
         role: 'agent',
-        text: 'I\'m <strong>Sankar Karthikeyan</strong> — an <span class="highlight">AI/ML Engineer</span> with 1.5 years of experience building production-grade AI systems that ship, scale, and earn trust.<br><br>I\'m currently the <strong>Founding AI Engineer</strong> at <em>SurveySparrow</em>, where I was among the first to introduce AI capabilities before a dedicated team existed — and built two flagship product lines from the ground up.',
+        text: 'I\'m <strong>Sankar Karthikeyan</strong> — an <span class="highlight">AI/ML Engineer</span> who builds AI systems that don\'t just work in demos but hold up in production, under pressure, and in front of real users.<br><br>I currently serve as the <strong>Founding AI Engineer</strong> at SurveySparrow, where I was entrusted to establish the company\'s AI engineering function from scratch — before any AI team, any playbook, or any precedent within the organisation. Over 1.5 years, I\'ve turned that blank page into two live, enterprise-grade AI product lines.',
         tokens: 420
       },
       {
         role: 'user',
-        text: 'What does "Founding AI Engineer" actually mean in practice?',
+        text: 'What does building from scratch actually look like in practice?',
         tokens: 580
       },
       {
         role: 'agent',
-        text: 'It means complete ownership — from architecture to production. I lead AI development for two flagship products: <em>SparrowDesk</em> (AI customer support) and <em>SparrowGenie</em> (enterprise AI suite).<br><br>My defining achievement: an AI Support Agent that autonomously resolves <span class="highlight">~80% of customer queries</span> — benchmarked directly against Intercom\'s FIN agent, and ours outperforms it in accuracy.<div class="stat-row"><div class="mini-stat"><span class="mini-stat-val">~80%</span><span class="mini-stat-label">Autonomous Resolution</span></div><div class="mini-stat"><span class="mini-stat-val">99%</span><span class="mini-stat-label">Production Uptime</span></div><div class="mini-stat"><span class="mini-stat-val">&gt; FIN</span><span class="mini-stat-label">vs Intercom</span></div></div>',
+        text: 'It means you\'re simultaneously the architect, engineer, researcher, and sometimes the product manager. There\'s no senior AI team to escalate to — just you, the problem, and the need to ship something customers trust.<br><br>My most significant output from that position: an AI Customer Support Agent that autonomously handles <span class="highlight">~80% of incoming queries</span> — no human in the loop. We ran it head-to-head against Intercom\'s FIN agent (the industry\'s benchmark), and ours came out ahead on accuracy.<div class="stat-row"><div class="mini-stat"><span class="mini-stat-val">~80%</span><span class="mini-stat-label">Autonomous Resolution</span></div><div class="mini-stat"><span class="mini-stat-val">99%</span><span class="mini-stat-label">Production Uptime</span></div><div class="mini-stat"><span class="mini-stat-val">&gt; FIN</span><span class="mini-stat-label">vs Intercom Benchmark</span></div></div>',
         tokens: 920
       },
       {
         role: 'user',
-        text: 'What is your academic background?',
+        text: 'What is your educational background?',
         tokens: 1080
       },
       {
         role: 'agent',
-        text: 'I hold an <strong>M.Sc. in Data Science</strong> — a 5-year integrated programme from <em>Coimbatore Institute of Technology</em>, graduating May 2025 with a CGPA of <span class="highlight">9.0</span>.<br><br>Alongside my studies, I:\n<br>• Presented research at the <strong>IIM International Conference on Business Analytics &amp; Intelligence</strong>\n<br>• Interned at <strong>Ernst &amp; Young</strong> as a Data Analyst Trainee\n<br>• Shipped production-level AI products for enterprise clients\n<br>• Won the <strong>AWS GenAILoft Best Innovation Award 2025</strong>',
+        text: 'I completed an <strong>M.Sc. in Data Science</strong> through a 5-year integrated programme at <em>Coimbatore Institute of Technology</em>, graduating in May 2025 with a CGPA of <span class="highlight">9.0 / 10</span>.<br><br>What I\'m most proud of isn\'t the grade — it\'s what happened alongside it. I presented original research at the <strong>IIM International Conference on Business Analytics</strong>, completed a data analytics internship at <strong>Ernst &amp; Young</strong>, and built and deployed production AI products for enterprise clients — all while keeping that academic standard.',
         tokens: 1460
       },
       {
         role: 'user',
-        text: 'What drives your work in AI?',
+        text: 'What is your core philosophy as an engineer?',
         tokens: 1620
       },
       {
         role: 'agent',
-        text: 'Three convictions guide everything I build:<br><br><strong>Production over prototypes.</strong> I care about AI that runs reliably in front of real users — delivering measurable business impact, not just impressive demos.<br><br><strong>The Agentic frontier.</strong> We\'re shifting from "AI as a feature" to "AI as an autonomous reasoner." That transition is where I want to contribute most meaningfully.<br><br><strong>Rigorous evaluation.</strong> I built an LLM evaluation platform precisely because subjective quality isn\'t enough. Every system I ship has benchmarks, monitors, and fallbacks.',
+        text: 'Three things anchor everything I build:<br><br><strong>Production impact over prototype glory.</strong> A model that scores well on benchmarks but fails in production is worse than useless — it erodes trust. I build for the real environment first.<br><br><strong>Evaluation before celebration.</strong> I built a full LLM evaluation pipeline — where AI models grade other AI models systematically — because "it feels right" is never an acceptable quality bar in a live product.<br><br><strong>The Agentic frontier.</strong> We\'re in the middle of a shift from "AI as a feature" to "AI as an autonomous decision-maker." I want to be at the centre of that transition, not watching from the sidelines.',
         tokens: 1960
       },
       {
         role: 'user',
-        text: 'How would you describe your engineering philosophy in one line?',
+        text: 'If you had to describe your engineering philosophy in a single sentence?',
         tokens: 2100
       },
       {
         role: 'agent',
-        text: '<em>"Build AI that earns trust through reliability, not just capability."</em><br><br>Every deployment I manage has monitoring, evaluation pipelines, fallback strategies, and zero critical incidents on record.',
+        text: '<em>"Build AI that earns trust through reliability, not just capability."</em><br><br>Every system I\'ve shipped comes with monitoring pipelines, evaluation frameworks, and documented fallback strategies — because the moment a user can\'t rely on your AI, it becomes a liability, not a product.',
         tokens: 2300,
         isLast: true
       }
     ]
   },
 
-  // ── CHAPTER 2: Experience ────────────────────────────────
+  // ─────────────────────────────────────────────────────────
+  // CHAPTER 2 — EXPERIENCE
+  // ─────────────────────────────────────────────────────────
   {
-    id: 1,
-    title: 'Experience',
-    sysPrompt: 'This chapter covers <strong>Sankar\'s professional work experience</strong> — roles held, products shipped, and measurable impact delivered.',
-    tokenMax: 4096,
+    id: 1, title: 'Experience', tokenMax: 4096,
     messages: [
       {
         role: 'user',
-        text: 'Walk me through your professional journey at SurveySparrow.',
+        text: 'Walk me through your time at SurveySparrow.',
         tokens: 140
       },
       {
         role: 'agent',
-        text: 'I joined in December 2024 as an <strong>AI/ML Engineer Intern</strong> and transitioned to full-time in May 2025. From day one, I was given genuine ownership — not support tickets. My role was to envision AI products that didn\'t yet exist, then take them through to production.',
+        text: 'I joined SurveySparrow in December 2024 as an <strong>AI/ML Engineer Intern</strong> — and converted to a full-time role in May 2025 upon completing my degree. From the very first week, I wasn\'t writing support code or fixing test cases. I was designing the AI strategy, choosing the architecture, and shipping production features for enterprise clients.<br><br>That level of ownership at an early career stage is rare — and it pushed me to grow faster than any structured programme could have.',
         tokens: 480
       },
       {
         role: 'user',
-        text: 'Tell me about the AI Customer Support Agent — your flagship product.',
+        text: 'Tell me the full story behind the AI Customer Support Agent.',
         tokens: 640
       },
       {
         role: 'agent',
-        text: 'I designed and deployed a <strong>multimodal AI Customer Support Agent</strong> built on <code>AWS AgentCore</code> with a RAG architecture.<br><br>Key outcomes:\n<br>• Autonomously resolves <span class="highlight">~80% of support queries</span> without human intervention\n<br>• Handles text, screenshots, and file attachments — fully multimodal\n<br>• Benchmarked against <strong>Intercom\'s FIN</strong> — outperforms it on accuracy\n<br>• Live in production at 99% uptime with zero critical incidents<div class="tag-row"><span class="tag-chip">AWS AgentCore</span><span class="tag-chip">RAG</span><span class="tag-chip pink">Multimodal</span><span class="tag-chip green">Production</span></div>',
+        text: 'The brief was deceptively simple: build an AI agent that reduces support load. The execution was anything but.<br><br>I designed a <strong>multimodal AI Support Agent</strong> deployed on <code>AWS AgentCore</code>, built around a retrieval-augmented generation (RAG) architecture. What makes it genuinely impactful:\n<br><br>• It understands <strong>text, screenshots, and file attachments</strong> — so customers can explain their problems naturally, not just through text\n<br>• It resolves <span class="highlight">~80% of incoming queries autonomously</span> — no escalation, no human delay\n<br>• It runs with <strong>99% uptime</strong> and has had zero critical production incidents since launch\n<br>• We benchmarked it against <strong>Intercom\'s FIN</strong> — the standard enterprise support AI — and ours outperformed it on accuracy<div class="tag-row"><span class="tag-chip">AWS AgentCore</span><span class="tag-chip">RAG</span><span class="tag-chip pink">Multimodal AI</span><span class="tag-chip green">Live in Production</span></div>',
         tokens: 1080
       },
       {
         role: 'user',
-        text: 'What have you built under SparrowGenie?',
+        text: 'What did you build for SparrowGenie?',
         tokens: 1240
       },
       {
         role: 'agent',
-        text: 'SparrowGenie is our enterprise AI suite. I owned the AI layer end-to-end and independently shipped:\n<br><br>• <strong>RAG Knowledge Copilot</strong> — instant answers from company documentation\n<br>• <strong>AI RFP Automation</strong> — maps source documents to RFP questions automatically\n<br>• <strong>Automated Proposal Generation</strong> — full RFP responses and sales proposals from minimal input\n<br>• <strong>RAG Sales Copilot</strong> — analyses upcoming meetings, generates pre-call intelligence and summaries\n<br><br>All delivered with <span class="highlight">99% uptime and zero critical production incidents</span>.',
+        text: 'SparrowGenie is SurveySparrow\'s enterprise AI suite — a broader platform targeting sales and pre-sales productivity. I owned the entire AI layer. Here\'s what I shipped independently:\n<br><br>• <strong>Knowledge Copilot</strong> — a RAG-powered assistant that gives instant, cited answers from internal documentation, reducing time-to-answer for sales teams\n<br>• <strong>RFP Automation</strong> — intelligently maps incoming RFP questions to the right sections of company documents, eliminating hours of manual search\n<br>• <strong>Proposal Generator</strong> — produces full, contextualised sales proposals from a brief input, dramatically accelerating the pre-sales cycle\n<br>• <strong>Meeting Intelligence Copilot</strong> — analyses upcoming client meetings, generates pre-call research, and surfaces relevant talking points automatically\n<br><br>Every one of these runs in production at <span class="highlight">99% uptime with zero critical incidents</span>.',
         tokens: 1680
       },
       {
         role: 'user',
-        text: 'Tell me about the AWS GenAILoft award-winning work.',
+        text: 'You won an AWS hackathon — what was that about?',
         tokens: 1840
       },
       {
         role: 'agent',
-        text: 'I built a <strong>Developer Productivity Intelligence Platform</strong> measuring engineering performance through DORA metrics — deployment frequency, lead time, change failure rate, and AI-driven impact classification.<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>Best Innovation — AWS GenAILoft Hackathon 2025</strong><br>Recognised as the most innovative solution among all AWS Partnership companies</div></div>',
+        text: 'At the <strong>AWS GenAILoft Hackathon 2025</strong>, I built a <strong>Developer Productivity Intelligence Platform</strong> that uses AI to measure and improve engineering team performance through DORA metrics — tracking deployment frequency, lead time for changes, change failure rate, and mean time to recovery.<br><br>The system automatically classifies code changes by type and business impact using AI, and surfaces actionable insights that help engineering managers identify bottlenecks in real time.<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>🏆 Best Innovation Award — AWS GenAILoft 2025</strong><br>Recognised as the most innovative solution across all AWS Partner companies at the event</div></div>',
         tokens: 2180
       },
       {
         role: 'user',
-        text: 'How about your internship work and earlier experience at EY?',
+        text: 'What did you build during your internship phase, and what about your time at EY?',
         tokens: 2340
       },
       {
         role: 'agent',
-        text: 'During my internship at SurveySparrow:\n<br><br>• <strong>AI QA Automation</strong> — generates test cases, test scenarios, and Playwright code directly from PRDs. Delivered a <span class="highlight">10× improvement</span> in test creation velocity.\n<br>• <strong>AI Product Manager Assistant</strong> — automates end-to-end PM workflows: user stories, PRDs, wireframes, architecture diagrams, and JIRA tickets — all from a single natural language brief.\n<br>• Full AWS infrastructure ownership: Bedrock, S3, DynamoDB, Aurora RDS, Lambda, EventBridge, ECR, CloudWatch.\n<br><br>At <strong>Ernst &amp; Young</strong> (2023), I served as a Data Analyst Trainee, designing sales data intelligence dashboards using SAP Analytics Cloud.',
+        text: 'During the internship period at SurveySparrow, I built two internal productivity tools that are now used by the engineering and product teams:\n<br><br><strong>AI QA Engineer</strong> — give it a product requirements document and it generates comprehensive test cases, scenario matrices, and working Playwright automation scripts. What used to take a QA engineer a full day now takes minutes. <span class="highlight">10× speed improvement, validated.</span>\n<br><br><strong>AI Product Manager</strong> — an end-to-end PM workflow engine. Input a single idea or user problem, and it produces user stories, a full PRD, wireframe descriptions, system architecture diagrams, and JIRA-ready tickets — automatically. This is what "AI replacing repetitive work" looks like in practice.\n<br><br>At <strong>Ernst &amp; Young</strong> in 2023, I worked as a Data Analyst Trainee, designing and delivering sales intelligence dashboards in SAP Analytics Cloud for business stakeholders. It was my first exposure to data work at an enterprise scale — and it confirmed that I wanted to go deeper into the AI layer.',
         tokens: 2600,
         isLast: true
       }
     ]
   },
 
-  // ── CHAPTER 3: Projects & Skills ─────────────────────────
+  // ─────────────────────────────────────────────────────────
+  // CHAPTER 3 — PROJECTS & SKILLS
+  // ─────────────────────────────────────────────────────────
   {
-    id: 2,
-    title: 'Projects & Skills',
-    sysPrompt: 'This chapter covers <strong>technical expertise, personal projects, research and recognition</strong>.',
-    tokenMax: 4096,
+    id: 2, title: 'Projects & Skills', tokenMax: 4096,
     messages: [
       {
         role: 'user',
-        text: 'What is your core technical stack?',
+        text: 'What does your technical toolkit look like?',
         tokens: 130
       },
       {
         role: 'agent',
-        text: 'My stack is built for <span class="highlight">production AI systems</span> at enterprise scale:<br><br><strong>AI / ML</strong><div class="tag-row"><span class="tag-chip">Agentic AI</span><span class="tag-chip">RAG Architectures</span><span class="tag-chip">LLM Evaluation</span><span class="tag-chip">Prompt Engineering</span><span class="tag-chip pink">Machine Learning</span><span class="tag-chip pink">Deep Learning</span></div><br><strong>Cloud Infrastructure</strong><div class="tag-row"><span class="tag-chip green">Amazon Bedrock</span><span class="tag-chip green">AWS AgentCore</span><span class="tag-chip green">Lambda</span><span class="tag-chip green">S3 · DynamoDB</span><span class="tag-chip green">Aurora RDS</span><span class="tag-chip green">CloudWatch</span></div><br><strong>Languages &amp; Databases</strong><div class="tag-row"><span class="tag-chip gold">Python</span><span class="tag-chip gold">JavaScript</span><span class="tag-chip">Pinecone</span><span class="tag-chip">PostgreSQL</span><span class="tag-chip">MongoDB</span><span class="tag-chip">Firebase</span></div>',
+        text: 'My stack is deliberately assembled for building <span class="highlight">production AI systems at enterprise scale</span> — not just experiments or notebooks.<br><br><strong>AI & Machine Learning</strong><div class="tag-row"><span class="tag-chip">Agentic AI Systems</span><span class="tag-chip">RAG Architecture</span><span class="tag-chip">LLM Evaluation</span><span class="tag-chip">Prompt Engineering</span><span class="tag-chip pink">Deep Learning</span><span class="tag-chip pink">Classical ML</span></div><br><strong>Cloud & Infrastructure (AWS)</strong><div class="tag-row"><span class="tag-chip green">Amazon Bedrock</span><span class="tag-chip green">AWS AgentCore</span><span class="tag-chip green">Lambda</span><span class="tag-chip green">S3 · DynamoDB</span><span class="tag-chip green">Aurora RDS</span><span class="tag-chip green">CloudWatch</span><span class="tag-chip green">ECR</span></div><br><strong>Languages & Data</strong><div class="tag-row"><span class="tag-chip gold">Python</span><span class="tag-chip gold">JavaScript</span><span class="tag-chip">Pinecone</span><span class="tag-chip">PostgreSQL</span><span class="tag-chip">MongoDB</span><span class="tag-chip">Firebase</span></div>',
         tokens: 540
       },
       {
         role: 'user',
-        text: 'What AI development tools do you use in your day-to-day work?',
+        text: 'How do you use AI tools in your own day-to-day engineering?',
         tokens: 710
       },
       {
         role: 'agent',
-        text: 'Beyond building AI, I work <em>within</em> AI-native environments daily — which meaningfully accelerates my output:\n<br><br>• <code>Cursor</code> — AI-first code editor with pair-programming capability\n<br>• <code>Claude Code</code> — Anthropic\'s CLI agent for complex engineering workflows\n<br>• <code>KIRO</code> — AWS\'s agentic IDE designed for cloud-native AI development\n<br>• <code>AntiGravity</code> — advanced AI coding assistant (this portfolio was built with it)\n<br>• <code>Perplexity</code> — AI-powered research and technical intelligence\n<br>• <code>Granola</code> — AI meeting notes, so I remain fully present in conversations\n<br><br>This toolchain allows me to operate at a fundamentally different velocity.',
+        text: 'I think of this as a competitive advantage, not just a preference. I work inside AI-native tools continuously:\n<br><br>• <code>Cursor</code> — AI-first code editor; context-aware pair programming that actually understands your codebase\n<br>• <code>Claude Code</code> — Anthropic\'s CLI-based agent for complex, multi-step engineering tasks\n<br>• <code>KIRO</code> — AWS\'s agentic IDE, purpose-built for cloud-native AI workflows\n<br>• <code>AntiGravity</code> — the AI assistant used to build this very portfolio\n<br>• <code>Perplexity</code> — AI-powered research when I need to go deep on a technical question fast\n<br>• <code>Granola</code> — AI meeting assistant, so I\'m fully present in conversations rather than taking notes\n<br><br>The cumulative effect: I consistently operate at a higher output level than the traditional engineering workflow allows.',
         tokens: 1140
       },
       {
         role: 'user',
-        text: 'Tell me about your personal projects.',
+        text: 'Tell me about your personal projects in depth.',
         tokens: 1310
       },
       {
         role: 'agent',
-        text: '<strong>Portfolio Buzz</strong> — A full-stack AI investment platform for tracking, analysing, and comparing equity and mutual fund portfolios in one place.<div class="tag-row"><span class="tag-chip">Flask</span><span class="tag-chip">Next.js</span><span class="tag-chip">MongoDB</span><span class="tag-chip pink">Perplexity API</span><span class="tag-chip">Vercel · Render</span></div>Built with multi-agent AI workflows for portfolio insights, cross-asset comparisons, and investment decision intelligence.<br><br><strong>Analyze This</strong> — A domain-agnostic CSV analysis tool. Any dataset, any domain — it surfaces meaningful insights automatically, without requiring any programming knowledge from the user.',
+        text: '<strong>Portfolio Buzz — AI Investment Intelligence Platform</strong><br>This started as a personal frustration: existing investment tracking tools showed you data but didn\'t help you think. So I built one that does.<div class="tag-row"><span class="tag-chip">Flask</span><span class="tag-chip">Next.js</span><span class="tag-chip">MongoDB</span><span class="tag-chip pink">Perplexity AI API</span><span class="tag-chip">Vercel · Render</span></div>Portfolio Buzz uses multi-agent AI workflows to analyse equity and mutual fund portfolios, surface cross-asset comparisons, and generate investment reasoning — not just charts. It\'s the kind of tool I wanted to exist, so I built it.<br><br><strong>Analyze This — Universal Data Intelligence Tool</strong><br>The insight behind this project: most of the world\'s data lives in CSV files, and most of the people who need insights from them can\'t code. Analyze This accepts any CSV from any domain and automatically discovers patterns, outliers, and insights — no programming knowledge required. This project was good enough to be accepted and presented at the <strong>IIM International Conference on Business Analytics</strong>.',
         tokens: 1740
       },
       {
         role: 'user',
-        text: 'What about research contributions and recognition?',
+        text: 'What research have you published, and what awards have you received?',
         tokens: 1900
       },
       {
         role: 'agent',
-        text: '<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>Best Innovation — AWS GenAILoft Hackathon 2025</strong><br>Most innovative solution among all AWS Partnership companies — Developer Productivity Intelligence Platform</div></div><br>Research publication: <strong>IIM\'s 9th International Conference on Business Analytics &amp; Intelligence (2022)</strong> — presented <em>"Insight Analysis for Any CSV File"</em>, one of India\'s most prestigious business analytics forums.',
+        text: '<div class="award-card-inline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="award-card-inline-text"><strong>Best Innovation — AWS GenAILoft Hackathon 2025</strong><br>Most innovative solution among all participating AWS Partner companies</div></div><br><strong>Research Presentation — IIM International Conference 2022</strong><br><em>"Insight Analysis for Any CSV File"</em> — presented at IIM\'s 9th International Conference on Business Analytics &amp; Intelligence, one of India\'s most rigorous academic forums for data science research. I was 20, and a third-year undergraduate. The paper was selected on merit from a highly competitive pool of submissions.',
         tokens: 2300
       },
       {
         role: 'user',
-        text: 'Do you also own DevOps and deployment pipelines, or is that separate?',
+        text: 'Do you handle deployment and DevOps yourself, or do you hand that off?',
         tokens: 2460
       },
       {
         role: 'agent',
-        text: 'I own the full delivery lifecycle — not just the model. My DevOps stack includes:\n<br><br>• <strong>Jenkins</strong> — CI/CD pipelines for automated deployment\n<br>• <strong>Docker</strong> — containerised AI services for consistent, reproducible environments\n<br>• <strong>AWS ECR</strong> — container registry for production AI workloads\n<br>• <strong>CloudWatch</strong> — real-time monitoring, alerting, and observability\n<br><br>I also built a <strong>DORA Metrics Intelligence Platform</strong> that measures engineering delivery performance — because I don\'t just use DevOps practices, I build systems that help teams improve them.',
+        text: 'I own the full delivery lifecycle. Handing off deployment would mean losing insight into how my systems behave in production — and that\'s insight I can\'t afford to lose when I\'m building AI systems that need to be trusted.<br><br>My DevOps stack:\n<br>• <strong>Jenkins</strong> — CI/CD pipelines for automated, tested deployment flows\n<br>• <strong>Docker</strong> — containerised services for reproducible environments across dev, staging, and production\n<br>• <strong>AWS ECR</strong> — container registry for production AI workloads\n<br>• <strong>CloudWatch</strong> — real-time monitoring, alerting, log analysis, and anomaly detection\n<br><br>And the meta-layer: I built the <strong>DORA Metrics Intelligence Platform</strong> that measures how effectively engineering teams use DevOps practices — because I don\'t just apply these tools, I think about how to measure their impact.',
         tokens: 2760,
         isLast: true
       }
     ]
   },
 
-  // ── CHAPTER 4: Let's Connect ─────────────────────────────
+  // ─────────────────────────────────────────────────────────
+  // CHAPTER 4 — LET'S CONNECT
+  // ─────────────────────────────────────────────────────────
   {
-    id: 3,
-    title: "Let's Connect",
-    sysPrompt: 'Final chapter — covering <strong>Sankar\'s professional aspirations, unique differentiators, and contact details</strong>.',
-    tokenMax: 4096,
+    id: 3, title: "Let's Connect", tokenMax: 4096,
     messages: [
       {
         role: 'user',
-        text: 'What makes you different from other AI/ML engineers in the market?',
+        text: 'What makes you meaningfully different from other AI engineers on the market right now?',
         tokens: 160
       },
       {
         role: 'agent',
-        text: '<em>"I don\'t just build with LLMs. I know how to evaluate, benchmark, and trust them at scale in production."</em><br><br>Most engineers can call an API and produce an impressive demo. What\'s less common:\n<br><br>• Building <strong>LLM evaluation pipelines</strong> where AI judges AI — systematically and at scale\n<br>• Creating <strong>competitive benchmarking systems</strong> — we ran ours against Intercom\'s FIN and won\n<br>• Maintaining <strong>99% uptime</strong> on AI systems with zero critical production incidents\n<br>• Designing for token cost, latency, fallback behaviour, and observability from the first line of code\n<br><br>That\'s the difference between AI that impresses in demos and AI that earns trust in production.',
+        text: 'Most engineers at this stage can integrate an API and produce something that looks impressive. The gap shows when you go deeper.<br><br>What I bring that\'s genuinely uncommon for 1.5 years of experience:\n<br><br>• I\'ve built and operated <strong>LLM evaluation frameworks</strong> at scale — not just a few test prompts, but systematic pipelines where AI models assess AI outputs for quality, accuracy, and safety\n<br>• I\'ve run <strong>live competitive benchmarks</strong> against commercial AI products (Intercom FIN) — and designed the methodology, not just run someone else\'s script\n<br>• I\'ve shipped <strong>multiple AI products to enterprise production</strong> with 99% uptime — understanding not just model performance, but latency, token cost, fallback strategy, and observability\n<br>• I reason about AI quality in terms of <em>measurement</em> — not intuition\n<br><br>That\'s the difference between AI engineering as a skill and AI engineering as a discipline.',
         tokens: 580
       },
       {
         role: 'user',
-        text: 'What kind of opportunities are you looking for?',
+        text: 'What kind of role or environment would bring out your best work?',
         tokens: 740
       },
       {
         role: 'agent',
-        text: 'I\'m seeking roles where AI is treated as a <strong>strategic capability</strong>, not a feature afterthought.<br><br>Specifically, I want to:\n<br>• Lead or significantly contribute to AI/ML product engineering\n<br>• Work at the frontier of <strong>Agentic AI, LLM systems, and RAG architectures</strong>\n<br>• Own the complete loop — architecture, implementation, deployment, evaluation, improvement\n<br>• Contribute to a team that moves with conviction and measures everything\n<br><br>Whether that\'s a high-growth startup or an AI-native organisation redefining what\'s possible — I bring both the technical depth and the product sensibility to make meaningful impact.',
+        text: 'I do my best work in environments where <strong>AI is a serious, first-class investment</strong> — not a feature checkbox or a PR initiative.<br><br>Concretely, I\'m looking for:\n<br>• A role where I can own AI/ML engineering with real scope — architecture through production\n<br>• Work at the cutting edge of <strong>Agentic AI, LLM systems, and intelligent automation</strong>\n<br>• A team that values measurement, questions assumptions, and ships with velocity\n<br>• A problem space where AI isn\'t just supplementary — it\'s the core of the product\n<br><br>Geography isn\'t a constraint. I\'m equally open to a high-conviction startup and a company building at the frontier of what AI can do.',
         tokens: 1100
       },
       {
         role: 'user',
-        text: 'Tell me something personal about you beyond your professional work.',
+        text: 'Tell me something about you that doesn\'t show up on a resume.',
         tokens: 1260
       },
       {
         role: 'agent',
-        text: 'A few things that might offer a fuller picture:<div class="fun-grid"><div class="fun-card"><strong>Research at 20</strong>Presented at IIM\'s International Conference as a third-year undergraduate — one of the youngest contributors at the forum.</div><div class="fun-card"><strong>AI-Native Workflow</strong>I live inside AI tools daily — not because I have to, but because I genuinely believe this is how high-leverage engineering gets done.</div><div class="fun-card"><strong>Built for Myself</strong>Portfolio Buzz began as a personal tool. I invest, needed better analytics, and shipped the platform. That\'s how most of my best work starts.</div><div class="fun-card"><strong>Academics + Delivery</strong>CGPA of 9.0 while simultaneously shipping production AI for enterprise customers. I don\'t compromise on either.</div></div>',
+        text: 'A few things that offer a more complete picture:<div class="fun-grid"><div class="fun-card"><strong>IIM at 20</strong>Presenting original research at an IIM international conference as a third-year undergrad wasn\'t a school trip. It was a competitive submission accepted on merit — and I was one of the youngest there.</div><div class="fun-card"><strong>I Build What I Need</strong>Portfolio Buzz started because I invest personally and found existing tools shallow. The best way to understand a problem deeply enough to solve it is to have the problem yourself.</div><div class="fun-card"><strong>AI Is My Operating System</strong>I use 6+ AI tools daily — not because I have to, but because I believe this is how high-leverage work gets done in 2025. I\'m not adapting to the AI era; I\'m already inside it.</div><div class="fun-card"><strong>Standards Under Pressure</strong>I maintained a 9.0 CGPA at a rigorous five-year programme while simultaneously building and deploying production AI systems for enterprise customers. I don\'t trade one for the other.</div></div>',
         tokens: 1620
       },
       {
         role: 'user',
-        text: 'How can I get in touch with you?',
+        text: 'I\'d like to reach out. How can I connect with you?',
         tokens: 1780
       },
       {
         role: 'agent',
-        text: 'I would be glad to connect. Here are the best ways to reach me:<div class="contact-row"><a href="mailto:sankarkarthikeyan066@gmail.com" class="contact-chip" id="final-email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> sankarkarthikeyan066@gmail.com</a><a href="tel:+919361381816" class="contact-chip" id="final-phone"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +91 93613 81816</a><a href="https://www.linkedin.com/in/sankar-karthikeyan/" target="_blank" rel="noopener" class="contact-chip" id="final-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="#6366F1"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> linkedin.com/in/sankar-karthikeyan</a><a href="https://github.com/Sankar" target="_blank" rel="noopener" class="contact-chip" id="final-github"><svg width="15" height="15" viewBox="0 0 24 24" fill="#EC4899"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg> github.com/Sankar</a></div>',
+        text: 'Genuinely glad to hear it — please do. I respond to serious enquiries promptly.<div class="contact-row"><a href="mailto:sankarkarthikeyan066@gmail.com?subject=Opportunity%20from%20Portfolio" class="contact-chip" id="final-email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> sankarkarthikeyan066@gmail.com</a><a href="tel:+919361381816" class="contact-chip" id="final-phone"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> +91 93613 81816</a><a href="https://www.linkedin.com/in/sankar-karthikeyan/" target="_blank" rel="noopener" class="contact-chip" id="final-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="#6366F1"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg> linkedin.com/in/sankar-karthikeyan</a><a href="https://github.com/SankarKarthi" target="_blank" rel="noopener" class="contact-chip" id="final-github"><svg width="15" height="15" viewBox="0 0 24 24" fill="#EC4899"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg> github.com/SankarKarthi</a></div>',
         tokens: 2300,
         isLast: true,
         isFinal: true
@@ -296,24 +286,21 @@ const SESSIONS = [
 // ══════════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════════
-let currentSession = 0;
-let currentMsgIdx  = 0;
-let isTyping       = false;
-let isAutoPlay     = false;
-let autoTimer      = null;
+let currentSession  = 0;
+let currentMsgIdx   = 0;
+let isTyping        = false;
+let isAutoPlay      = false;
+let autoTimer       = null;
 let _nextBtnHandler = null;
 
-// ══════════════════════════════════════════════════════════
-// TIMING
-// ══════════════════════════════════════════════════════════
 const T = {
-  userMsgDelay:   400,
-  thinkMin:       1500,
-  thinkJitter:    900,
-  readUser:       2800,
-  readAgent:      3800,
-  lastMsgPause:   1800,
-  sessLoadGap:    600,
+  userMsgDelay: 400,
+  thinkMin:     1600,
+  thinkJitter:  1000,
+  readUser:     2800,
+  readAgent:    3800,
+  lastMsgPause: 1800,
+  sessLoadGap:  700,
 };
 
 // ══════════════════════════════════════════════════════════
@@ -322,7 +309,6 @@ const T = {
 const messagesEl    = document.getElementById('messages');
 const tokenFill     = document.getElementById('token-fill');
 const tokenCount    = document.getElementById('token-count');
-const tokenMaxEl    = document.getElementById('token-max');
 const tokenPctEl    = document.getElementById('token-pct');
 const tokenLabelEl  = document.getElementById('token-label');
 const exceededEl    = document.getElementById('token-exceeded');
@@ -330,10 +316,7 @@ const exceededFill  = document.getElementById('exceeded-fill');
 const exceededIcon  = document.getElementById('exceeded-icon');
 const exceededTitle = document.getElementById('exceeded-title');
 const exceededSub   = document.getElementById('exceeded-sub');
-const exceededNote  = document.getElementById('exceeded-note');
 const nextSessLabel = document.getElementById('next-sess-label');
-const sendBtn       = document.getElementById('send-btn');
-const autoBtn       = document.getElementById('auto-btn');
 const hintBar       = document.getElementById('hint-bar');
 
 // ══════════════════════════════════════════════════════════
@@ -344,13 +327,9 @@ function updateTokenBar(used, max) {
   tokenFill.style.width = pct + '%';
   tokenCount.textContent = pct;
   tokenPctEl.textContent = pct + '%';
-  if (pct > 80) {
-    tokenFill.style.background = 'linear-gradient(90deg,#7C3AED,#EC4899)';
-    tokenLabelEl.style.color = '';
-  } else {
-    tokenFill.style.background = 'linear-gradient(90deg,#7C3AED,#6366F1)';
-    tokenLabelEl.style.color = '';
-  }
+  tokenFill.style.background = pct > 80
+    ? 'linear-gradient(90deg,#7C3AED,#EC4899)'
+    : 'linear-gradient(90deg,#7C3AED,#6366F1)';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -373,7 +352,6 @@ function renderMessage(msg, animate = true) {
   messagesEl.appendChild(wrap);
   if (animate) requestAnimationFrame(() => requestAnimationFrame(() => wrap.classList.add('visible')));
   setTimeout(() => messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior:'smooth' }), 60);
-  return wrap;
 }
 
 // ══════════════════════════════════════════════════════════
@@ -397,9 +375,6 @@ function removeTyping() {
   if (t) t.remove();
 }
 
-// ══════════════════════════════════════════════════════════
-// CHAPTER DIVIDER
-// ══════════════════════════════════════════════════════════
 function addDivider(text) {
   const d = document.createElement('div');
   d.className = 'msg-divider';
@@ -412,55 +387,51 @@ function addDivider(text) {
 // ══════════════════════════════════════════════════════════
 function loadSession(idx) {
   currentSession = idx;
-  currentMsgIdx = 0;
-  isTyping = false;
+  currentMsgIdx  = 0;
+  isTyping       = false;
   const sess = SESSIONS[idx];
   messagesEl.innerHTML = '';
   updateTokenBar(0, sess.tokenMax);
 
-  // Update sidebar
   document.querySelectorAll('.sess-btn').forEach((btn, i) => {
     btn.classList.toggle('active', i === idx);
     btn.setAttribute('aria-selected', i === idx ? 'true' : 'false');
     const s = btn.querySelector('.sess-status');
-    if (i < idx)       { s.textContent = '✓'; s.className = 'sess-status done'; }
-    else if (i === idx){ s.textContent = '▶'; s.className = 'sess-status active-s'; }
-    else               { s.textContent = '·'; s.className = 'sess-status locked'; }
+    if (i < idx)        { s.textContent = '✓'; s.className = 'sess-status done'; }
+    else if (i === idx) { s.textContent = '▶'; s.className = 'sess-status active-s'; }
+    else                { s.textContent = '·'; s.className = 'sess-status locked'; }
   });
 
-  // Subtle section divider — just the chapter title
   addDivider(`── ${sess.title} ──`);
-  sendBtn.disabled = false;
   updateHint();
 }
 
 // ══════════════════════════════════════════════════════════
-// HINT BAR
+// HINT BAR — updates as conversation progresses
 // ══════════════════════════════════════════════════════════
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function updateHint() {
   const sess = SESSIONS[currentSession];
   if (currentMsgIdx >= sess.messages.length) {
-    hintBar.textContent = 'Chapter complete.';
+    hintBar.textContent = 'Chapter complete — preparing the next one...';
     return;
   }
   const next = sess.messages[currentMsgIdx];
   if (next.role === 'user') {
     hintBar.innerHTML = `<span class="hint-q">${escHtml(next.text)}</span>`;
   } else {
-    hintBar.textContent = 'Composing response...';
+    hintBar.textContent = 'Sit tight — composing a response...';
   }
 }
 
 // ══════════════════════════════════════════════════════════
-// SEND NEXT
+// ADVANCE CONVERSATION
 // ══════════════════════════════════════════════════════════
 function sendNext() {
   if (isTyping) return;
   const sess = SESSIONS[currentSession];
   if (currentMsgIdx >= sess.messages.length) return;
   isTyping = true;
-  sendBtn.disabled = true;
   const msg = sess.messages[currentMsgIdx];
 
   if (msg.role === 'user') {
@@ -469,7 +440,6 @@ function sendNext() {
       updateTokenBar(msg.tokens, sess.tokenMax);
       currentMsgIdx++;
       isTyping = false;
-      sendBtn.disabled = false;
       updateHint();
       if (isAutoPlay) autoTimer = setTimeout(sendNext, T.readUser);
     }, T.userMsgDelay);
@@ -485,11 +455,9 @@ function sendNext() {
         isTyping = false;
         updateHint();
         if (msg.isLast) {
-          sendBtn.disabled = true;
           setTimeout(triggerChapterEnd, T.lastMsgPause);
         } else {
-          sendBtn.disabled = false;
-          if (isAutoPlay) autoTimer = setTimeout(sendNext, T.readAgent);
+          autoTimer = setTimeout(sendNext, T.readAgent);
         }
       }, thinkTime);
     }, 200);
@@ -497,27 +465,21 @@ function sendNext() {
 }
 
 // ══════════════════════════════════════════════════════════
-// CHAPTER END — elegant transition overlay
+// CHAPTER END OVERLAY
 // ══════════════════════════════════════════════════════════
 function triggerChapterEnd() {
   const sess = SESSIONS[currentSession];
-  const isFinalChapter = (currentSession === SESSIONS.length - 1);
-
-  if (isFinalChapter && sess.messages.slice(-1)[0]?.isFinal) {
-    showPortfolioEnd();
-    return;
+  if (currentSession === SESSIONS.length - 1 && sess.messages.slice(-1)[0]?.isFinal) {
+    showPortfolioEnd(); return;
   }
 
-  // Progress bar to 100%
   updateTokenBar(sess.tokenMax, sess.tokenMax);
-
   const transition = CHAPTER_TRANSITIONS[currentSession];
   const nextIdx = currentSession + 1;
 
   if (exceededIcon)  exceededIcon.innerHTML    = transition.icon;
   if (exceededTitle) exceededTitle.textContent = transition.title;
   if (exceededSub)   exceededSub.textContent   = transition.sub;
-  if (exceededNote)  exceededNote.textContent  = '';
   if (nextSessLabel) nextSessLabel.textContent = transition.nextLabel;
 
   const btn = document.getElementById('next-sess-btn');
@@ -541,7 +503,7 @@ function triggerChapterEnd() {
         btn.disabled = false;
         setTimeout(() => {
           loadSession(nextIdx);
-          if (isAutoPlay) autoTimer = setTimeout(sendNext, 1200);
+          autoTimer = setTimeout(sendNext, 1200); // always resume
         }, T.sessLoadGap);
       }, 550);
     };
@@ -551,19 +513,13 @@ function triggerChapterEnd() {
   exceededEl.style.display = 'flex';
   setTimeout(() => { exceededFill.style.width = '100%'; }, 100);
   setTimeout(() => {
-    if (btn) {
-      btn.style.display = 'inline-flex';
-      btn.style.animation = 'fadeInUp 0.45s ease forwards';
-    }
+    if (btn) { btn.style.display = 'inline-flex'; btn.style.animation = 'fadeInUp 0.45s ease forwards'; }
   }, 1900);
 }
 
 function showPortfolioEnd() {
-  isAutoPlay = false;
   clearTimeout(autoTimer);
-  sendBtn.disabled = true;
-  autoBtn.disabled = true;
-  hintBar.innerHTML = `<span style="color:#10B981;font-style:normal;">✦ Portfolio complete — thank you for exploring. I would love to connect.</span>`;
+  hintBar.innerHTML = `<span style="color:#10B981;font-style:normal;">✦ Portfolio complete — thank you for your time. I look forward to connecting.</span>`;
   document.querySelectorAll('.sess-btn').forEach(btn => {
     const s = btn.querySelector('.sess-status');
     s.textContent = '✓'; s.className = 'sess-status done';
@@ -571,51 +527,27 @@ function showPortfolioEnd() {
 }
 
 // ══════════════════════════════════════════════════════════
-// AUTO PLAY
-// ══════════════════════════════════════════════════════════
-autoBtn.addEventListener('click', () => {
-  isAutoPlay = !isAutoPlay;
-  autoBtn.classList.toggle('playing', isAutoPlay);
-  if (isAutoPlay) {
-    autoBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg><span>Pause</span>`;
-    autoTimer = setTimeout(sendNext, 800);
-  } else {
-    autoBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Auto Play</span>`;
-    clearTimeout(autoTimer);
-  }
-});
-
-sendBtn.addEventListener('click', () => { if (!isAutoPlay) sendNext(); });
-
-// ══════════════════════════════════════════════════════════
-// SIDEBAR NAV — all chapters freely accessible
+// SIDEBAR NAV — click any chapter to jump; auto-play resumes
 // ══════════════════════════════════════════════════════════
 document.querySelectorAll('.sess-btn').forEach((btn, i) => {
   btn.addEventListener('click', () => {
     clearTimeout(autoTimer);
-    isAutoPlay = false;
     isTyping = false;
     if (exceededEl.style.display !== 'none') {
       exceededEl.style.display = 'none';
       exceededFill.style.width = '0%';
       const b = document.getElementById('next-sess-btn');
-      if (b) b.style.display = 'none';
+      if (b) { b.style.display = 'none'; b.style.opacity = '0'; }
     }
-    autoBtn.classList.remove('playing');
-    autoBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Auto Play</span>`;
     loadSession(i);
+    // Resume auto-play after brief pause
+    autoTimer = setTimeout(sendNext, 1200);
   });
 });
 
 // ══════════════════════════════════════════════════════════
-// KEYBOARD
-// ══════════════════════════════════════════════════════════
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey && !isTyping && !isAutoPlay) { e.preventDefault(); sendNext(); }
-  if (e.key === ' ' && e.target.tagName !== 'INPUT') { e.preventDefault(); autoBtn.click(); }
-});
-
-// ══════════════════════════════════════════════════════════
-// INIT
+// INIT — auto-start 2 seconds after page load
 // ══════════════════════════════════════════════════════════
 loadSession(0);
+isAutoPlay = true;
+autoTimer = setTimeout(sendNext, 2000); // starts automatically — no button needed
